@@ -6,38 +6,68 @@
 </head>
 
 <body>
+  <button onclick="
+      updateCartQuantity(1);
+    ">Add to Cart</button>
 
-  <h1>Simple Cart Quantity Tracker</h1>
+  <button onclick="
+      updateCartQuantity(2);
+    ">+2</button>
 
-  <button onclick="console.log(`Cart quantity: ${cartQuantity}`);">Show Quantity</button>
-  <button onclick="updateCartQuantity(1);">Add to Cart</button>
-  <button onclick="updateCartQuantity(2);">+2</button>
-  <button onclick="updateCartQuantity(3);">+3</button>
-  <button onclick="updateCartQuantity(4);">+4</button>
-  <button onclick="updateCartQuantity(5);">+5</button>
-  <button onclick="updateCartQuantity(-1);">Remove from cart</button>
-  <button onclick="updateCartQuantity(-2);">-2</button>
-  <button onclick="updateCartQuantity(-3);">-3</button>
-  <button onclick="resetCart();">Reset Cart</button>
+  <button onclick="
+      updateCartQuantity(3);
+    ">+3</button>
+
+  <button onclick="
+      updateCartQuantity(4);
+    ">+4</button>
+
+  <button onclick="
+      updateCartQuantity(5);
+    ">+5</button>
+
+  <button onclick="
+      updateCartQuantity(-1);
+    ">Remove from cart</button>
+
+  <button onclick="
+      updateCartQuantity(-2);
+    ">-2</button>
+
+  <button onclick="
+      updateCartQuantity(-3);
+    ">-3</button>
+
+  <button onclick="
+resetQuantity();
+    ">Reset Cart</button>
+
+  <p class="js-cart-quantity">Cart quantity: 0</p>
 
   <script>
     let cartQuantity = 0;
 
-    function updateCartQuantity(value) {
-      if (cartQuantity + value > 10) {
+    function updateCartQuantity(change) {
+      if (cartQuantity + change > 10) {
         alert('The cart is full');
-      } else if (cartQuantity + value < 0) {
-        alert('Not enough items in the cart');
-      } else {
-        cartQuantity += value;
-        console.log(`Cart quantity: ${cartQuantity}`);
+        return;
       }
+
+      if (cartQuantity + change < 0) {
+        alert('Not enough items in the cart');
+        return;
+      }
+
+      cartQuantity += change;
+
+      document.querySelector('.js-cart-quantity')
+        .innerHTML = `Cart quantity: ${cartQuantity}`;
     }
 
-    function resetCart() {
+    function resetQuantity() {
       cartQuantity = 0;
-      console.log('Cart was reset.');
-      console.log(`Cart quantity: ${cartQuantity}`);
+      document.querySelector('.js-cart-quantity')
+        .innerHTML = `Cart quantity: ${cartQuantity}`;
     }
   </script>
 </body>
